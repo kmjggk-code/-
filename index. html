@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un pequeño libro para ti 💙</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            }
+body { margin: 0; min-height: 100vh; background: #07152e; display: flex; justify-content: center; align-items: center; font-family: Georgia, serif; overflow: hidden; }
+/* ESTRELLAS */
+body::before {
+    content: "✦ · ✧ · ✦ · ✧";
+    position: fixed;
+    top: 15%;
+    left: 5%;
+    right: 5%;
+    color: #b9d9ff;
+    font-size: 25px;
+    opacity: 0.7;
+    letter-spacing: 25px;
+    pointer-events: none;
+    }
+    /* LIBRO */
+    .libro {
+        position: relative; width: 340px; height: 460px; perspective: 1500px;
+        }
+        /* TODAS LAS PÁGINAS */
+        .pagina {
+            position: absolute; width: 100%; height: 100%; background: #f8f1df; border-radius: 5px 12px 12px 5px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transform-origin: left center; transition: transform 1s ease; cursor: pointer; padding: 45px 35px; color: #182642;
+            }
+            /* ORDEN DE LAS PÁGINAS */
+            .portada {
+                z-index: 6;
+                }
+               .pagina1 {
+                 z-index: 5;
+                 }
+                 .pagina2 {
+                     z-index: 4; 
+                }
+                .pagina3 { 
+                    z-index: 3; 
+                }
+                .pagina4 { 
+                    z-index: 2; 
+                }
+                .pagina5 { 
+                    z-index: 1; 
+                }
+                /* PORTADA */
+                .portada {
+                    background: #0d2347; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 2px solid #6d9dcc;
+                    }
+                    .portada h1 { 
+                        font-size: 34px; margin-bottom: 15px; 
+                    }
+                    .portada p { 
+                        color: #c8e2ff; font-size: 17px; 
+                    }
+                    .luna { 
+                        font-size: 55px; margin-bottom: 15px; 
+                    }
+                    /* TÍTULOS */
+                    .pagina h2 { 
+                        text-align: center; color: #173d70; margin-top: 10px; 
+                    }
+                    /* TEXTO */
+                    .pagina p { font-size: 18px; line-height: 1.7; text-align: center;
+                        }
+                        /* NÚMERO DE PÁGINA */
+                        .numero { 
+                            position: absolute; bottom: 15px; left: 0; right: 0; text-align: center; color: #71839c;
+                         }
+                         /* PASAR PÁGINA */
+                         .pasada { 
+                            transform: rotateY(-180deg); 
+                        }
+                        /* ÚLTIMA PÁGINA */
+                        .mensaje-final { 
+                            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; 
+                        }
+                        .mensaje-final .corazon { font-size: 45px; }
+                        /* TEXTO DE ABAJO */
+                        .instruccion { 
+                            position: fixed; bottom: 30px; color: #c8e2ff; font-family: Arial, sans-serif; font-size: 14px; 
+                        }
+    </style>
+    </head>
+    <body>
+        <div class="libro">
+<!-- PORTADA -->
+ <div class="pagina portada" 
+ onclick="pasarPagina(0)">
+ <div class="luna">🌙</div>
+  <h1>Para ti</h1>
+ <p> 
+    Un pequeño libro que hice especialmente para ti
+ </p>
+ <br>
+ <small> Haz clic para abrir </small>
+</div>
+
+
+ <!-- PÁGINA 1 -->
+  <div class="pagina pagina1" 
+  onclick="pasarPagina(1)">
+<h2>Primera página</h2>
+ <p>
+    Quería hacerte algo diferente, algo que pudieras guardar y recordar.
+  </p>
+  <div class="numero"> 
+    1 
+</div>
+</div>
+
+<!-- PÁGINA 2 -->
+ <div class="pagina pagina2" 
+ onclick="pasarPagina(2)">
+
+ <h2>Algo especial</h2>
+<p> Hay personas que llegan a nuestra vida y, de alguna manera, dejan algo bonito en nosotros, aunque a mí me den ganas de meterte un puñete. 
+
+</p>
+<div class="numero"> 
+    2 
+</div>
+</div>
+<!-- PÁGINA 3 -->
+<div class="pagina pagina3" 
+onclick="pasarPagina(3)">
+<h2>Un recuerdo</h2>
+<p> Te quiero aunque no te lo demuestre y solo te pegue, pero amo cuando me haces reir o me haces sentir escuchada creeme que esas pequeñas cosas son las que mas me gustan.
+     </p>
+ <div class="numero"> 
+        3 
+    </div>
+</div>
+
+<!-- PÁGINA 4 -->
+ <div class="pagina pagina4" 
+ onclick="pasarPagina(4)">
+  <h2>Para terminar...</h2>
+ <p> Gracias por formar parte de una pequeña parte de mi vida. 
+ </p>
+<div class="numero"> 
+    4 
+</div>
+</div>
+
+<!-- ÚLTIMA PÁGINA -->
+ <div class="pagina pagina5 mensaje-final" 
+ onclick="cerrarLibro()">
+<div class="corazon"> 
+    💙
+ </div>
+ <h2>Fin</h2>
+ <p> Alex te amo.... te a mordido un perro 👅 </p>
+ <small> Haz clic para cerrar el libro </small>
+ <div class="numero"> 
+    5
+ </div>
+</div>
+</div>
+
+<div class="instruccion"> 
+    Haz clic en las páginas para continuar ✦ 
+</div>
+<script>
+    /* PASAR UNA PÁGINA */
+function pasarPagina(numero) {
+    const paginas = document.querySelectorAll(".pagina");
+    paginas[numero].classList.add("pasada"); 
+}
+/* CERRAR EL LIBRO */
+function cerrarLibro() {
+    const paginas = document.querySelectorAll(".pagina");
+    for (let i = paginas.length - 1; i >= 0; i--) { paginas[i].classList.remove("pasada"); 
+    } 
+}
+
+</script>
+    </body>
+    </html>                                            
